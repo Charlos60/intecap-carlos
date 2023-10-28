@@ -1,0 +1,75 @@
+
+
+{% extends 'index_master.html' %} 
+{% load static %}
+{% block content %}
+<div class="right_col" role="main">
+    
+    <h1 class="text-center">Formulario de Curso</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form method="post" action="{% url 'task:editar_curso' idcurso=curso.id_curso %}">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label for="nombre_curso">Nombre del Curso:</label>
+                    <input type="text" class="form-control" id="nombre_curso" name="nombre_curso" maxlength="255" value="{{curso.nombre_curso}}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="descripcion_curso">Descripción del Curso:</label>
+                    <textarea class="form-control" id="descripcion_curso" name="descripcion_curso" rows="4" required>{{ curso.descripcion_curso }}</textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fecha_inicio">Fecha de Inicio:</label>
+                    <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" value="{{ curso.fecha_inicio|date:'Y-m-d' }}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fecha_fin">Fecha de Fin:</label>
+                    <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" value="{{curso.fecha_fin|date:'Y-m-d'}}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="duracion">Duración (en semanas):</label>
+                    <input type="number" class="form-control" id="duracion" name="duracion" value="{{curso.duracion}}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="horarios">Horarios:</label>
+                    <input type="text" class="form-control" id="horarios" name="horarios" maxlength="255" value="{{curso.horarios}}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="establecimiento">Establecimiento:</label>
+                    <input type="text" class="form-control" id="establecimiento" name="establecimiento" maxlength="255" value="{{curso.establecimiento}}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="costo">Costo (en USD):</label>
+                    <input type="number" class="form-control" id="costo" name="costo" step="0.01" value="{{curso.costo}}"required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="cupos_disponibles">Cupos Disponibles:</label>
+                    <input type="number" class="form-control" id="cupos_disponibles" name="cupos_disponibles" value="{{curso.cupos_disponibles}}" required>
+                </div>
+                
+                
+                <!-- Campo para la categoría del curso (puedes usar un select o input según tus necesidades) -->
+
+                
+                <div class="form-group">
+                    <label for="descripcion">Categoria del curso:</label>
+                    <select id="id_categoria" name="id_categoria" class="form-control select2" option value="{{curso.id_categoria_id}}" data-url="{% url 'task:search_categoria' %}" required>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

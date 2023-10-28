@@ -1,0 +1,65 @@
+{% extends 'index_master.html' %} 
+{% load static %}
+{% block content %}
+<div class="right_col" role="main">
+<body>
+  <div class="container mt-5">
+    <a href="{% url 'task:create_curso_view' %}"class="btn btn-primary">Crear Curso</a>
+  </div>
+  <div>
+  <form class="form-inline float-right" method="POST" action="{% url 'task:search_curso' %}">
+    {% csrf_token %}
+    <input class="form-control mr-sm-2" name="search" id="search" type="search" placeholder="Buscar" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+</form>
+</div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>descripcion</th>
+        <th>fecha de inicio</th>
+        <th>fecha de fin</th>
+        <th>duracion</th>
+        <th>horario</th>
+        <th>establecimiento</th>
+        <th>costo</th>
+        <th>cupos</th>
+        <th>categorias</th>
+        <th>Opciones</th>
+
+
+      </tr>
+    </thead>
+    <tbody>
+      {% for cursos in cursos %}
+      <tr>
+        <td>{{ cursos.nombre_curso }}</td>
+        <td>{{ cursos.descripcion_curso }}</td>
+        <td>{{ cursos.fecha_inicio }}</td>
+        <td>{{ cursos.fecha_fin }}</td>
+        <td>{{ cursos.duracion }}</td>
+        <td>{{ cursos.horarios }}</td>
+        <td>{{ cursos.establecimiento }}</td>
+        <td>{{ cursos.costo }}</td>
+        <td>{{ cursos.cupos_disponibles }}</td>
+        <td>{{ cursos.id_categoria.nombre_categoria }}</td>
+        <td>
+            <a href="{% url 'task:editar_curso_view' idcurso=cursos.id_curso %}" class="btn btn-info editar-btn">Editar</a>
+        </td>
+        <td>
+          <a href="{% url 'task:formulario_view' idcurso=cursos.id_curso %}" class="btn btn-info editar-btn">Formulario</a>
+      </td>
+        <td>
+            <a href="{% url 'task:eliminar_curso' idcurso=cursos.id_curso %}" class="btn btn-info editar-btn">Eliminar</a>
+        </td>
+
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+</body>
+</div>
+{% endblock %}
+

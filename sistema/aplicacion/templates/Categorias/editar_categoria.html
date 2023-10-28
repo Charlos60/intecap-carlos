@@ -1,0 +1,32 @@
+{% extends 'index_master.html' %} 
+{% load static %}
+{% block content %}
+<div class="right_col" role="main">
+    
+    <h1 class="text-center">Editar Categoria</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form method="post" action="{% url 'task:editar_categoria' categoria_id=categorias.id_categoria %}">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label for="nombre_categoria">Nombre Categoria</label>
+                    <input type="text" class="form-control" id="nombre_curso" name="nombre_categoria" maxlength="255" value="{{categorias.nombre_categoria}}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="descripcion_categoria">Descripción de Categoria:</label>
+                    <textarea class="form-control" id="descripcion_categoria" name="descripcion_categoria" rows="4"  required>{{ categorias.descripcion_categoria}}</textarea>
+                </div>
+                
+                <!-- Campo para la categoría del curso (puedes usar un select o input según tus necesidades) -->
+                
+                
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

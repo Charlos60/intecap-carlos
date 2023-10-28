@@ -1,0 +1,62 @@
+{% extends 'index_master.html' %} 
+{% load static %}
+{% block content %}
+<div class="right_col" role="main">
+<body>
+<br>
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Seleccionar una opción
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        {% for curso in cursos %}
+            <a class="dropdown-item" href="{% url 'task:estudiantes_curso_filtro' idcurso=curso.id_curso %}">{{curso.nombre_curso}}</a>
+        {% endfor %}
+    </div>
+</div>
+
+  
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Nombre Completo</th>
+        <th>DPI</th>
+        <th>Genero</th>
+        <th>Escolaridad</th>
+        <th>Telefono</th>
+        <th>Direccion</th>
+        <th>Etnia</th>
+        <th>Fecha de Nacimiento</th>
+        <th>edad</th>
+        <th>Curso Interesado</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for estudiante in estudiantes %}
+      <tr>
+        <td>{{ estudiante.nombre }}</td>
+        <td>{{ estudiante.dpi }}</td>
+        <td>{{ estudiante.genero }}</td>
+        <td>{{ estudiante.escolaridad }}</td>
+        <td>{{ estudiante.telefono }}</td>
+        <td>{{ estudiante.direccion }}</td>
+        <td>{{ estudiante.etnia }}</td>
+        <td>{{ estudiante.fecha_nacimiento }}</td>
+        <td>{{ estudiante.edad }}</td>
+        <td>{{ estudiante.id_curso.nombre_curso }}</td>
+        <td>
+          <a href="{% url 'task:editar_estudiante_view' idestudiante=estudiante.id_estudiante %}" class="btn btn-info editar-btn">Editar</a>
+      </td>
+        <td>
+            <a href="#" class="btn btn-info editar-btn">Eliminar</a>
+        </td>
+
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+</body>
+</div>
+{% endblock %}
+

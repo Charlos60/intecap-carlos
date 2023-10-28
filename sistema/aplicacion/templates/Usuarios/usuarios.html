@@ -1,0 +1,42 @@
+{% extends 'index_master.html' %} 
+{% load static %}
+{% block content %}
+<div class="right_col" role="main">
+<body>
+    <div class="container mt-5">
+        <a href="{% url 'task:crear_usuario_view' %}"class="btn btn-primary">Crear Usuario</a>
+      </div>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Nombre </th>
+        <th>Apellido</th>
+        <th>DPI</th>
+        <th>Email</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      {% for usuarios in usuarios %}
+      <tr>
+        <td>{{ usuarios.nombre }}</td>
+        <td>{{ usuarios.apellido }}</td>
+        <td>{{ usuarios.dpi }}</td>
+        <td>{{ usuarios.email }}</td>
+        <td>
+          <a href="{% url 'task:editar_usuario_view' idusuario=usuarios.id_usuario %}" class="btn btn-info editar-btn">Editar</a>
+      </td>
+        <td>
+            <a href="{% url 'task:eliminar_usuario' idusuario=usuarios.id_usuario %}" class="btn btn-info editar-btn">Eliminar</a>
+        </td>
+
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+</body>
+</div>
+{% endblock %}
+

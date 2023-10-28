@@ -1,0 +1,67 @@
+{% extends 'index_master.html' %} 
+{% load static %}
+{% block content %}
+<div class="right_col" role="main">
+<body>
+    <div class="container">
+      <form action="{% url 'task:editar_usuario' idusuario=usuario.id_usuario %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese su nombre" value="{{usuario.nombre}}" required>
+        </div>
+        <div class="form-group">
+          <label for="apellido">Apellido:</label>
+          <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingrese su apellido" value="{{usuario.apellido}}" required>
+        </div>
+        <div class="form-group">
+          <label for="dpi">DPI:</label>
+          <input type="text" class="form-control" id="dpi" name="dpi" placeholder="Ingrese su DPI" pattern="[0-9]{13}" minlength="13" maxlength="13" value="{{usuario.dpi}}" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Ingrese su email" value="{{usuario.email}}" required>
+        </div>
+        <div class="form-group">
+            <label for="contraseña">Contraseña:</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Ingrese su contraseña">
+          </div>
+          <div class="form-group">
+            <label for="contraseña">Confirmar Contraseña:</label>
+            <input type="password" class="form-control" id="password2" name="password2" placeholder="Ingrese su contraseña">
+          </div>
+          <div class="form-group">
+            <label for="genero">Género:</label>
+            <input type="text" class="form-control" id="genero" name="genero" placeholder="Ingrese su género" value="{{usuario.genero}}">
+        </div>
+        <div class="form-group">
+            <label for="escolaridad">Escolaridad:</label>
+            <input type="text" class="form-control" id="escolaridad" name="escolaridad" placeholder="Ingrese su escolaridad" value="{{usuario.escolaridad}}">
+        </div>
+        <div class="form-group">
+            <label for="telefono">Teléfono:</label>
+            <input type="number" class="form-control" id="telefono" name="telefono" placeholder="Ingrese su teléfono" value="{{usuario.telefono}}">
+        </div>
+        <div class="form-group">
+            <label for="direccion">Dirección:</label>
+            <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Ingrese su dirección" value="{{usuario.direccion}}">
+        </div>
+        <div class="form-group">
+            <label for="etnia">Etnia:</label>
+            <input type="text" class="form-control" id="etnia" name="etnia" placeholder="Ingrese su etnia" value="{{usuario.etnia}}">
+        </div>
+        <div class="form-group">
+            <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+            <input type="date" class="form-control" id="fechaNacimiento" name="fecha_nacimiento" value="{{ usuario.fecha_nacimiento|date:'Y-m-d' }}">
+        </div>
+        <div class="form-group">
+            <label for="edad">Edad:</label>
+            <input type="number" class="form-control" id="edad" name="edad" placeholder="Ingrese su edad" value="{{usuario.edad}}" >
+        </div>
+
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </form>
+    </div>
+  </body>
+  {% endblock %}
+</div>

@@ -1,0 +1,53 @@
+{% extends 'index_master.html' %}
+
+{% block content %}
+{% load static %}
+<!-- Hereda de Index Master: Muestra contenido -->
+
+<div class="right_col" role="main">
+  <h1>Categoría de Cursos</h1>
+
+  <!-- Formulario para Agregar Categoría -->
+  <form method="post" action="{% url 'task:agregar_categoria_curso' %}">
+    {% csrf_token %}
+    <div class="form-group row">
+      <label for="nombre_categoria" class="col-4 col-form-label">Nombre categoría</label>
+      <div class="col-8">
+        <input id="nombre_categoria" name="nombre_categoria" type="text" class="form-control">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="descripcion_categoria" class="col-4 col-form-label">Descripción</label>
+      <div class="col-8">
+        <input id="descripcion_categoria" name="descripcion_categoria" type="text" class="form-control">
+      </div>
+    </div>
+    <div class="offset-4 col-8">
+      <button type="submit" class="btn btn-primary">Agregar Categoría</button>
+    </div>
+  </form>
+
+  <!-- Tabla de Categorías Registradas -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for categoria in categorias %}
+      <tr>
+        <td>{{ categoria.nombre_categoria }}</td>
+        <td>{{ categoria.descripcion_categoria }}</td>
+        <td>
+          <a href="{% url 'task:editar_categoria_view' categoria_id=categoria.id_categoria %}" class="btn btn-info">Editar</a>
+          <a href="{% url 'task:eliminar_categoria' categoria_id=categoria.id_categoria %}" class="btn btn-danger">Eliminar</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
